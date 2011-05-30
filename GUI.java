@@ -19,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -54,6 +55,7 @@ public class GUI extends JFrame {
         // Define o tamanho e não permite que se reinicie
         this.setSize(800, 600);
         this.setResizable(false);
+        this.setBackground(Color.DARK_GRAY);
 
         popupListener = new PopupListener();
 
@@ -166,12 +168,18 @@ public class GUI extends JFrame {
      */
     public void layoutElements() {
 
+        // Sets a border to each element
+
+        drawingPanel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.darkGray));
+
+
         this.setLayout(layout);
 
-        layElement(layoutConstraints, GridBagConstraints.BOTH, 5, 1, 0, 0);
+        layElement(layoutConstraints, GridBagConstraints.BOTH, 6, 1, 0, 0);
         this.getContentPane().add(drawingPanel, layoutConstraints);
 
         sidebar = new Sidebar();
+        sidebar.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.darkGray));
 
         layElement(layoutConstraints, GridBagConstraints.NORTHWEST, 1, 1, 1, 0);
         this.getContentPane().add(sidebar, layoutConstraints);
