@@ -17,14 +17,14 @@ public class Main{
 
 
 		//TODO retirar dados do robo e obstaculos a partir mapa e definições da simulacao
-		int altura = 530;
-		int comprimento = 530;
-		Node posicaoInicial = new Node(0,0,0);
-		Node fim = new Node(420,482,0);
+		int altura =  560;
+		int comprimento = 560;
+		Node posicaoInicial = new Node(10,100,0);
+		Node fim = new Node(45,560,0);
 		int altMaxObs=1;
 		int custoRotacao=1;
-		int angRotacao=90; 
-		int distMov=10; 
+		int angRotacao=43; 
+		int distMov=50; 
 
 		// TODO criar objectos e mapa
 		Robo robo = new Robo(posicaoInicial,altMaxObs,custoRotacao,angRotacao,distMov);
