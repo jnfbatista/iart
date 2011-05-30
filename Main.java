@@ -31,11 +31,16 @@ public class Main {
 
         ProcuraCaminho pc = new ProcuraCaminho(mapa);
 
-        */
-        /*
-        Node de = new Node(0,0,0);
-        Node para = new Node(3,2,0);
-        Obstaculo obs = new Obstaculo(0,0,2,1,1);
+
+		//TODO retirar dados do robo e obstaculos a partir mapa e defini��es da simulacao
+		int altura = 530;
+		int comprimento = 530;
+		Node posicaoInicial = new Node(0,0,0);
+		Node fim = new Node(420,482,0);
+		int altMaxObs=1;
+		int custoRotacao=1;
+		int angRotacao=90; 
+		int distMov=10; 
 
         pc.intersect(de, para, obs);
          */
