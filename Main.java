@@ -13,18 +13,20 @@ public class Main {
        // GUI gui = new GUI();
         
         //TODO retirar dados do robo e obstaculos a partir mapa e definições da simulacao
-        int altura = 500;
-        int comprimento = 500;
-        Node posicaoInicial = new Node(10, 10, 0);
-        Node fim = new Node(400, 408, 0);
+        int altura = 40;
+        int comprimento = 40;
+        Node posicaoInicial = new Node(0, 0, 0);
+        Node fim = new Node(20, 20, 0);
         int altMaxObs = 1;
         int custoRotacao = 1;
-        int angRotacao = 80;
-        int distMov = 50;
+        int angRotacao = 90;
+        int distMov = 4;
 
         // TODO criar objectos e mapa
         Robo robo = new Robo(posicaoInicial, altMaxObs, custoRotacao, angRotacao, distMov);
+        Obstaculo obs = new Obstaculo(4,1,2,2,3);
         ArrayList<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
+        obstaculos.add(obs);
 
 
         Mapa mapa = new Mapa(altura, comprimento, fim, robo, obstaculos);
