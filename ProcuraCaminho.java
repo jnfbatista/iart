@@ -65,7 +65,7 @@ public class ProcuraCaminho extends Astar<Node> {
     		ret.add(nnode);
 
     	}
-		System.out.println("### fim ###");	
+		System.out.println("#####");	
 
     return ret;
     

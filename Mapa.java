@@ -3,14 +3,19 @@ package iart;
 import java.util.ArrayList;
 
 public class Mapa {
-
+//yeah
 	private int altura;
 	private int largura;
 	private Node fim;
 	private Robo robo;
 	private ArrayList<Obstaculo> obstaculos;
-	public Mapa(int altura, int comprimento, Node fim,Robo robo,ArrayList<Obstaculo> obstaculos ){
-
+	public Mapa(int altura, int largura, Node fim,Robo robo,ArrayList<Obstaculo> obstaculos ){
+		this.setAltura(altura);
+		this.setLargura(largura);
+		this.setFim(fim);
+		this.setRobo(robo);
+		this.setObstaculos(obstaculos);
+	
 	}
 
 
@@ -54,6 +59,16 @@ public class Mapa {
 
 	Node getFim() {
 		return fim;
+	}
+
+
+	private void setRobo(Robo robo) {
+		this.robo = robo;
+	}
+
+
+	private void setObstaculos(ArrayList<Obstaculo> obstaculos) {
+		this.obstaculos = obstaculos;
 	}
 
 

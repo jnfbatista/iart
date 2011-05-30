@@ -13,7 +13,7 @@ public class Main {
         GUI gui = new GUI();
         
         //TODO retirar dados do robo e obstaculos a partir mapa e definições da simulacao
-        /*int altura = 100;
+        int altura = 100;
         int comprimento = 100;
         Node posicaoInicial = new Node(0, 0, 0);
         Node fim = new Node(100, 100, 0);
@@ -31,21 +31,9 @@ public class Main {
 
         ProcuraCaminho pc = new ProcuraCaminho(mapa);
 
-
-
-		//TODO retirar dados do robo e obstaculos a partir mapa e defini��es da simulacao
-		int altura = 530;
-		int comprimento = 530;
-		Node posicaoInicial = new Node(0,0,0);
-		Node fim = new Node(420,482,0);
-		int altMaxObs=1;
-		int custoRotacao=1;
-		int angRotacao=43; 
-		int distMov=50; 
-
-        pc.intersect(de, para, obs);
-         */
-        /*System.out.println("Find a path from the top left corner to the right bottom one.");
+        //pc.intersect(de, para, obs);
+         
+        System.out.println("Find a path from the top left corner to the right bottom one.");
 
 
         long begin = System.currentTimeMillis();
@@ -67,6 +55,6 @@ public class Main {
                 System.out.print(n);
             }
             System.out.println();
-        }*/
+        }
     }
 }

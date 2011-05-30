@@ -92,6 +92,7 @@ public abstract class Astar<T>
 		for(T t : sucessores){
 			Pesquisa novaPesquisa = new Pesquisa(pesquisa);
 			novaPesquisa.setPonto(t);
+			System.out.println(f(novaPesquisa, pesquisa.getPonto(), t));
 			f(novaPesquisa, pesquisa.getPonto(), t);
 			pesquisas.offer(novaPesquisa);
 		}
