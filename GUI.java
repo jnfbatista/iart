@@ -2,6 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 package iart;
 
 import iart.gui.*;
@@ -25,6 +27,8 @@ import javax.swing.BorderFactory;
  *
  * @author batista
  */
+
+
 public class GUI extends JFrame {
 
     private Sidebar sidebar = null;

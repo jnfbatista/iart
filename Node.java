@@ -16,6 +16,7 @@ public class Node{
                     this.setY(y);
 					this.flag = flag1;
     }
+    @Override
     public String toString(){
                     return "(" + getX() + ", " + getY() + ") ";
     }

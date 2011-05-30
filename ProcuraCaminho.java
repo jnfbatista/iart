@@ -21,7 +21,7 @@ public class ProcuraCaminho extends Astar<Node> {
 
         //Custo rotacao
         if (para.getFlag() > 0) {
-            cusRot = mapa.getRobo().getCustoRotacao() * para.getFlag();
+           cusRot = mapa.getRobo().getCustoRotacao() * para.getFlag();
         }
 
         //Custo obstaculos
@@ -39,43 +39,31 @@ public class ProcuraCaminho extends Astar<Node> {
 
     @Override
     protected List<Node> geraSucessores(Node nodo) {
-        System.out.println(" Nodo a ser computado:" + nodo);
-        List<Node> ret = new LinkedList<Node>();
-        int ang = mapa.getRobo().getAngRotacao();
-        int numAng = 360 / ang;
-        System.out.println("### Lista gerada: ###");
 
-        for (int i = 0; i < numAng; i++) {
-            Node nnode = new Node(nodo.getX() + mapa.getRobo().getDistMov() * (cos(ang * i)), nodo.getX() + mapa.getRobo().getDistMov() * sin(ang * i), i);
-            /*
-            if(nnode.getX()<0){
-            nnode.setX(0.0);
-            }
-            if (nnode.getY()<0){
-            nnode.setY(0.0);
-            }
-            if (nnode.getX()>mapa.getLargura()){
-            nnode.setX(mapa.getLargura());
-            }
-            if (nnode.getX()>mapa.getAltura()){
-            nnode.setX(mapa.getAltura());
-            }
-             */
-            System.out.println(nnode);
-            ret.add(nnode);
+    	System.out.println(" Nodo a ser computado:" + nodo);
+    	List<Node> ret = new LinkedList<Node>();
+    	int ang = mapa.getRobo().getAngRotacao();
+    	double angrad = (ang*2*Math.PI)/360;
+    	int numAng =  (int) (2*PI/angrad) ;
+    	System.out.println("n�mero de angulos"+ numAng);
+		System.out.println("### Lista gerada: ###");	
 
-        }
-        System.out.println("#####");
+    	for (int i = 0; i < numAng; i++) {
+    		Node nnode = new Node (nodo.getX() + mapa.getRobo().getDistMov() * (cos(angrad*i)), nodo.getY() + mapa.getRobo().getDistMov() * sin(angrad*i), i);
+    	
+    		System.out.println(nnode);
+    		ret.add(nnode);
 
-        return ret;
+    	}
+		System.out.println("#####");	
 
-    }
+    return ret;
+    
+}
 
     @Override
     protected Double h(Node de, Node para) {
         double dist = Math.sqrt(Math.pow((para.getX() - mapa.getFim().getX()), 2) + Math.pow((para.getY() - mapa.getFim().getY()), 2));
-        //System.out.println("h:" + dist);
-
         return dist;
     }
 

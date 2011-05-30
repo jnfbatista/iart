@@ -63,7 +63,6 @@ public abstract class Astar<T>
 		Double g =  g(de, para) + ((p.pai != null) ? p.pai.g : 0.0);
 		Double h = h(de, para);
 		
-		
 		p.g = g;
 		p.f = g + h;
 		
@@ -92,7 +91,6 @@ public abstract class Astar<T>
 		for(T t : sucessores){
 			Pesquisa novaPesquisa = new Pesquisa(pesquisa);
 			novaPesquisa.setPonto(t);
-			System.out.println(f(novaPesquisa, pesquisa.getPonto(), t));
 			f(novaPesquisa, pesquisa.getPonto(), t);
 			pesquisas.offer(novaPesquisa);
 		}
@@ -119,7 +117,6 @@ public abstract class Astar<T>
 			Pesquisa raiz = new Pesquisa();
 			raiz.setPonto(incio);
 
-			
 			f(raiz, incio, incio); // no caso nodo incial ter um custo associado
 
 			expande(raiz);
@@ -134,7 +131,6 @@ public abstract class Astar<T>
 
 				T ultimo = p.getPonto();
 
-				System.out.println(p.g);
 				ultimoCusto = p.g;
 
 				if(solucao(ultimo)){
