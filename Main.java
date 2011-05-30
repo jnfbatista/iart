@@ -10,17 +10,17 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        GUI gui = new GUI();
+       // GUI gui = new GUI();
         
         //TODO retirar dados do robo e obstaculos a partir mapa e definições da simulacao
-        int altura = 100;
-        int comprimento = 100;
-        Node posicaoInicial = new Node(0, 0, 0);
-        Node fim = new Node(100, 100, 0);
+        int altura = 500;
+        int comprimento = 500;
+        Node posicaoInicial = new Node(10, 10, 0);
+        Node fim = new Node(400, 408, 0);
         int altMaxObs = 1;
         int custoRotacao = 1;
-        int angRotacao = 45;
-        int distMov = 3;
+        int angRotacao = 80;
+        int distMov = 50;
 
         // TODO criar objectos e mapa
         Robo robo = new Robo(posicaoInicial, altMaxObs, custoRotacao, angRotacao, distMov);
@@ -33,12 +33,12 @@ public class Main {
 
         //pc.intersect(de, para, obs);
          
-        System.out.println("Find a path from the top left corner to the right bottom one.");
+        System.out.println("Procura Caminho.");
 
 
         long begin = System.currentTimeMillis();
 
-        LinkedList<Node> nodes = (LinkedList<Node>) pc.compute(new Node(0, 0, 0));
+        LinkedList<Node> nodes = (LinkedList<Node>) pc.compute(new Node(mapa.getRobo().getPosRobo().getX(),mapa.getRobo().getPosRobo().getY(),0));
 
         long end = System.currentTimeMillis();
 
@@ -48,9 +48,9 @@ public class Main {
         System.out.println("Cost = " + pc.getCost());
 
         if (nodes == null) {
-            System.out.println("No path");
+            System.out.println("Nao Existe Caminho");
         } else {
-            System.out.print("Path = ");
+            System.out.print("Caminho = ");
             for (Node n : nodes) {
                 System.out.print(n);
             }
