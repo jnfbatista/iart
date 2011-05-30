@@ -4,6 +4,13 @@ public class Node{
     private double x;
     private double y;
     private int flag = 0; // indica se o nodo foi gerado com ou sem rotacao
+
+    /**
+     *
+     * @param x X
+     * @param y Y
+     * @param flag1 Acumulador do ângulo
+     */
     Node(double x, double y, int flag1){
                     this.setX(x); 
                     this.setY(y);

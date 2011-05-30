@@ -39,37 +39,37 @@ public class ProcuraCaminho extends Astar<Node> {
 
     @Override
     protected List<Node> geraSucessores(Node nodo) {
-    	System.out.println(" Nodo a ser computado:" + nodo);
-    	List<Node> ret = new LinkedList<Node>();
-    	int ang = mapa.getRobo().getAngRotacao();
-    	int numAng = 360 / ang;
-		System.out.println("### Lista gerada: ###");	
+        System.out.println(" Nodo a ser computado:" + nodo);
+        List<Node> ret = new LinkedList<Node>();
+        int ang = mapa.getRobo().getAngRotacao();
+        int numAng = 360 / ang;
+        System.out.println("### Lista gerada: ###");
 
-    	for (int i = 0; i < numAng; i++) {
-    		Node nnode = new Node (nodo.getX() + mapa.getRobo().getDistMov() * (cos(ang*i)), nodo.getX() + mapa.getRobo().getDistMov() * sin(ang*i), i);
-    		/*
-    		if(nnode.getX()<0){
-    			nnode.setX(0.0);
-    		}
-    		if (nnode.getY()<0){
-    			nnode.setY(0.0);
-    		}
-    		if (nnode.getX()>mapa.getLargura()){
-    			nnode.setX(mapa.getLargura());
-    		}
-    		if (nnode.getX()>mapa.getAltura()){
-    			nnode.setX(mapa.getAltura());
-    		}
-    		*/
-    		System.out.println(nnode);
-    		ret.add(nnode);
+        for (int i = 0; i < numAng; i++) {
+            Node nnode = new Node(nodo.getX() + mapa.getRobo().getDistMov() * (cos(ang * i)), nodo.getX() + mapa.getRobo().getDistMov() * sin(ang * i), i);
+            /*
+            if(nnode.getX()<0){
+            nnode.setX(0.0);
+            }
+            if (nnode.getY()<0){
+            nnode.setY(0.0);
+            }
+            if (nnode.getX()>mapa.getLargura()){
+            nnode.setX(mapa.getLargura());
+            }
+            if (nnode.getX()>mapa.getAltura()){
+            nnode.setX(mapa.getAltura());
+            }
+             */
+            System.out.println(nnode);
+            ret.add(nnode);
 
-    	}
-		System.out.println("#####");	
+        }
+        System.out.println("#####");
 
-    return ret;
-    
-}
+        return ret;
+
+    }
 
     @Override
     protected Double h(Node de, Node para) {
@@ -96,18 +96,17 @@ public class ProcuraCaminho extends Astar<Node> {
         double p1by = para.getY();
         double p2ax = obstaculo.getX();
         double p2ay = obstaculo.getY();
-        double p2bx = p2ax + obstaculo.getComprimento();
-        double p2by = p2ay + obstaculo.getLargura();
+        double p2bx = p2ax + obstaculo.getLargura();
+        double p2by = p2ay + obstaculo.getComprimento();
 
 
         // comparison line segment
-        m1 = (p1ay - p1by) / (p1ax - p1bx);
+        m1 = (p1by - p1ay) / (p1bx - p1ax);
         b1 = p1ay - m1 * p1ax;
 
-
-        // second line segment
-        m2 = (p2ay - p2by) / (p2ax - p2bx);
-        b2 = p2ay - m2 * p2ax;
+        // second line segment belonging to the obstacle
+        m2 = 0;
+        b2 = p2ax;
 
         // if they're not parallel
         if (m1 != m2) {
@@ -115,18 +114,20 @@ public class ProcuraCaminho extends Astar<Node> {
             // find the intersection
             ix = (b2 - b1) / (m1 - m2);
             iy = m1 * ix + b1;
+
             // TODO ainda n detecta
             // is the intersection on the line segments?
-            if (ix > min(p1ax, p1bx) && ix < max(p1ax, p1bx)
-                    && iy > min(p1ay, p1by) && iy < max(p1ay, p1by)
-                    && ix > min(p2ax, p2bx) && ix < max(p2ax, p2bx)
-                    && iy > min(p2ay, p2by) && iy < max(p2ay, p2by)) {
-                System.out.println("tocam-se as porcas!!!");
-                return true;
-                // send the points to the shape object
+
+            System.out.printf("Intersecção em %g,%g!\n", ix, iy);
+
+
+
+            if (ix >= p2ax && ix <= p2bx) { //verifica entre as verticais
+                if (iy >= p2ay && iy <= p2by) { //verifica entre as horizontais
+                    return true;
+                }
             }
         }
-        System.out.println("n se tocam, e n tem prazer");
         return false;
     }
 }
