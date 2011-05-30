@@ -63,9 +63,11 @@ public abstract class Astar<T>
 		Double g =  g(de, para) + ((p.pai != null) ? p.pai.g : 0.0);
 		Double h = h(de, para);
 		
+		
 		p.g = g;
 		p.f = g + h;
-
+		
+		System.out.println("f= " + p.f + "=> g(" +g + ") h("+h +")");
 		return p.f;
 	}
 
@@ -131,6 +133,7 @@ public abstract class Astar<T>
 
 				T ultimo = p.getPonto();
 
+				System.out.println(p.g);
 				ultimoCusto = p.g;
 
 				if(solucao(ultimo)){

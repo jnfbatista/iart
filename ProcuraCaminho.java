@@ -24,7 +24,6 @@ public class ProcuraCaminho extends Astar<Node> {
             cusRot = mapa.getRobo().getCustoRotacao() * para.getFlag();
         }
 
-
         //Custo obstaculos
         int custoObst = 0;
         /*
@@ -40,33 +39,49 @@ public class ProcuraCaminho extends Astar<Node> {
 
     @Override
     protected List<Node> geraSucessores(Node nodo) {
-        System.out.println(nodo);
-        List<Node> ret = new LinkedList<Node>();
-        System.out.println("ang");
-        try {
-            System.out.println((mapa.getRobo()));
-            int ang = mapa.getRobo().getAngRotacao();
-            int numAng = 360 / ang;
-            for (int i = 0; i < numAng; i++) {
-                ret.add(new Node(nodo.getX() + mapa.getRobo().getDistMov() * (cos(ang)), nodo.getX() + mapa.getRobo().getDistMov() * sin(ang), i));
-            }
-        } catch (Exception e) {
-            System.out.println("fosteeeees");
-            e.printStackTrace();
-        }
-        return ret;
+    	System.out.println(" Nodo a ser computado:" + nodo);
+    	List<Node> ret = new LinkedList<Node>();
+    	int ang = mapa.getRobo().getAngRotacao();
+    	int numAng = 360 / ang;
+		System.out.println("### Lista gerada: ###");	
 
-    }
+    	for (int i = 0; i < numAng; i++) {
+    		Node nnode = new Node (nodo.getX() + mapa.getRobo().getDistMov() * (cos(ang*i)), nodo.getX() + mapa.getRobo().getDistMov() * sin(ang*i), i);
+    		/*
+    		if(nnode.getX()<0){
+    			nnode.setX(0.0);
+    		}
+    		if (nnode.getY()<0){
+    			nnode.setY(0.0);
+    		}
+    		if (nnode.getX()>mapa.getLargura()){
+    			nnode.setX(mapa.getLargura());
+    		}
+    		if (nnode.getX()>mapa.getAltura()){
+    			nnode.setX(mapa.getAltura());
+    		}
+    		*/
+    		System.out.println(nnode);
+    		ret.add(nnode);
+
+    	}
+		System.out.println("### fim ###");	
+
+    return ret;
+    
+}
 
     @Override
     protected Double h(Node de, Node para) {
-        double dist = Math.sqrt(Math.pow((de.getX() - para.getX()), 2) + Math.pow((de.getY() - para.getY()), 2));
+        double dist = Math.sqrt(Math.pow((para.getX() - mapa.getFim().getX()), 2) + Math.pow((para.getY() - mapa.getFim().getY()), 2));
+        //System.out.println("h:" + dist);
+
         return dist;
     }
 
     @Override
     protected boolean solucao(Node nodo) {
-        if (nodo.getX() == mapa.getFim().getX() && nodo.getY() == mapa.getFim().getY()) {
+        if (nodo.getX() + mapa.getRobo().getDistMov() >= mapa.getFim().getX() && nodo.getY() + mapa.getRobo().getDistMov() >= mapa.getFim().getY()) {
             return true;
         }
         return false;
