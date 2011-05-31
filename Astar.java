@@ -117,7 +117,7 @@ public abstract class Astar<T>
 			Pesquisa raiz = new Pesquisa();
 			raiz.setPonto(incio);
 
-			f(raiz, incio, incio); // no caso nodo incial ter um custo associado
+			//f(raiz, incio, incio); // no caso nodo incial ter um custo associado
 
 			expande(raiz);
 

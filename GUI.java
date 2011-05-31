@@ -426,9 +426,9 @@ public class GUI extends JFrame {
 
             g2.setPaint(Color.red);
 
-            g2.draw(new Line2D.Float(50, 50, 200, 20));
+            /*g2.draw(new Line2D.Float(50, 50, 200, 20));
 
-            g2.draw(new Line2D.Float(200, 20, 50, 200));
+            g2.draw(new Line2D.Float(200, 20, 50, 200));*/
 
             for (Line2D line : lines) {
 

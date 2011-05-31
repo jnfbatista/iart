@@ -57,13 +57,14 @@ public class ProcuraCaminho extends Astar<Node> {
 		int numAng =  (int) (2*Math.PI/angrad) ;
 		System.out.println("### Lista gerada: ###");	
 
-		for (int i = 0; i < numAng; i++) {
+		for (int i = 1; i < numAng + 1; i++) {
 			if (frontOnly && i>numAng*0.25 && i<numAng*0.75){
 				continue;
 			}
 			Node nnode = new Node (nodo.getX() + mapa.getRobo().getDistMov() * (cos(angrad*i)), nodo.getY() + mapa.getRobo().getDistMov() * sin(angrad*i), i);
 			System.out.println(nnode);
-			ret.add(nnode);
+                        if(nnode.getX() >= 0 && nnode.getY() >= 0)
+                            ret.add(nnode);
 
 		}
 		System.out.println("#####");	
@@ -116,22 +117,26 @@ public class ProcuraCaminho extends Astar<Node> {
 		b2 = p2ax;
 
 		// if they're not parallel
-		if (m1 != m2) {
+		if (m1 != m2 ) {
 
 			// find the intersection
 			ix = (b2 - b1) / (m1 - m2);
 			iy = m1 * ix + b1;
 
+                        if(Double.isNaN(ix) || Double.isNaN(iy) ) {
+                            //System.out.printf("%g, %g, %g, %g, %g, %g, %g, %g\n", p1by, p1ay, p1bx, p1ax, b1, b2, m1, m2);
+                        //    System.exit(0);
+                        }
 			// TODO ainda n detecta
 			// is the intersection on the line segments?
 
-			System.out.printf("Intersecção em %g,%g!\n", ix, iy);
+			//System.out.printf("Intersecção em %g,%g!\n", ix, iy);
 
 
 
 			if (ix >= p2ax && ix <= p2bx) { //verifica entre as verticais
 				if (iy >= p2ay && iy <= p2by) { //verifica entre as horizontais
-                                    System.out.println("##############################################################\nteste interseccao");
+                                    //System.out.println("##############################################################\nteste interseccao");
 					return true;
 				}
 			}
