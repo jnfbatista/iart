@@ -9,9 +9,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-       // GUI gui = new GUI();
-        
+
+        GUI gui = new GUI();
+
         //TODO retirar dados do robo e obstaculos a partir mapa e definições da simulacao
         int altura = 40;
         int comprimento = 40;
@@ -24,23 +24,23 @@ public class Main {
 
         // TODO criar objectos e mapa
         Robo robo = new Robo(posicaoInicial, altMaxObs, custoRotacao, angRotacao, distMov);
-        Obstaculo obs = new Obstaculo(4,1,2,2,3);
+        Obstaculo obs = new Obstaculo(4, 1, 2, 2, 3);
         ArrayList<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
         obstaculos.add(obs);
 
-
+/*
         Mapa mapa = new Mapa(altura, comprimento, fim, robo, obstaculos);
 
         ProcuraCaminho pc = new ProcuraCaminho(mapa);
 
         //pc.intersect(de, para, obs);
-         
+
         System.out.println("Procura Caminho.");
 
 
         long begin = System.currentTimeMillis();
 
-        LinkedList<Node> nodes = (LinkedList<Node>) pc.compute(new Node(mapa.getRobo().getPosRobo().getX(),mapa.getRobo().getPosRobo().getY(),0));
+        LinkedList<Node> nodes = (LinkedList<Node>) pc.compute(new Node(mapa.getRobo().getPosRobo().getX(), mapa.getRobo().getPosRobo().getY(), 0));
 
         long end = System.currentTimeMillis();
 
@@ -58,5 +58,7 @@ public class Main {
             }
             System.out.println();
         }
+ * 
+ */
     }
 }

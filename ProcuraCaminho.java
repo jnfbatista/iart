@@ -131,6 +131,7 @@ public class ProcuraCaminho extends Astar<Node> {
 
 			if (ix >= p2ax && ix <= p2bx) { //verifica entre as verticais
 				if (iy >= p2ay && iy <= p2by) { //verifica entre as horizontais
+                                    System.out.println("##############################################################\nteste interseccao");
 					return true;
 				}
 			}

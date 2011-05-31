@@ -63,7 +63,7 @@ public abstract class Astar<T>
 		Double g =  g(de, para) + ((p.pai != null) ? p.pai.g : 0.0);
 		Double h = h(de, para);
 		
-		p.g = g;
+		p.g += g;
 		p.f = g + h;
 		
 		System.out.println("f= " + p.f + "=> g(" +g + ") h("+h +")");

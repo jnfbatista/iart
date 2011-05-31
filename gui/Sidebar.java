@@ -28,11 +28,11 @@ public class Sidebar extends JPanel {
     private JLabel aStarLabel = null, aStarRobo = null, dTeta = null,
             dDist = null, custoRotacao = null, aStarObstaculos = null,
             custoUltrapassar = null;
-    private IntegerTextField dTetaInput = new IntegerTextField(),
+    public IntegerTextField dTetaInput = new IntegerTextField(),
             dDistInput = new IntegerTextField(), custoRotacaoInput = new IntegerTextField(),
             custoUltrapassarInput = new IntegerTextField();
     private JComboBox evaluationSelector = null;
-    private JButton startAStar = new JButton("CAlcular Caminho");
+    public JButton startAStar = new JButton("CAlcular Caminho");
     private Font mainLabelFont = new Font("Verdana", Font.BOLD, 14);
     private Font subLabelFont = new Font("Verdana", Font.PLAIN, 14);
 
@@ -82,6 +82,13 @@ public class Sidebar extends JPanel {
         JLabel[] labels = {aStarLabel, aStarRobo, dTeta,
             dDist, custoRotacao, aStarObstaculos,
             custoUltrapassar};
+
+        dTetaInput.setText("45");
+        dDistInput.setText("20");
+        custoRotacaoInput.setText("30");
+        custoUltrapassarInput.setText("1");
+
+
 
         int x = 0;
         for (JLabel l : labels) {
