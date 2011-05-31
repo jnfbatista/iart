@@ -2,8 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 package iart;
 
 import iart.gui.*;
@@ -22,13 +20,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author batista
  */
-
-
 public class GUI extends JFrame {
 
     private Sidebar sidebar = null;
@@ -60,6 +59,7 @@ public class GUI extends JFrame {
         this.setSize(800, 600);
         this.setResizable(false);
         this.setBackground(Color.DARK_GRAY);
+        this.setForeground(Color.darkGray);
 
         popupListener = new PopupListener();
 
@@ -94,8 +94,6 @@ public class GUI extends JFrame {
         popupMenu = new JPopupMenu();
 
         adicionarSub = new JMenu("Adicionar...");
-
-
 
         /** @todo: adicionar acções aos items do menu */
         adicionarRobo.addActionListener(new ActionListener() {
@@ -150,6 +148,55 @@ public class GUI extends JFrame {
             }
         });
 
+        adicionarObstaculo.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                JTextField obsLargura = new IntegerTextField(),
+                        obsAltura = new IntegerTextField(), objPesoUltrapassar = new IntegerTextField();
+
+
+                Object[] msg = {"Largura:", obsLargura, "Altura:", obsAltura, "Peso:", objPesoUltrapassar};
+
+                JOptionPane op = new JOptionPane(msg, JOptionPane.QUESTION_MESSAGE,
+                        JOptionPane.OK_CANCEL_OPTION, null, null);
+
+                JDialog dialog = op.createDialog(self, "Características:");
+                dialog.setVisible(true);
+
+                int result = JOptionPane.OK_OPTION;
+
+                try {
+                    result = ((Integer) op.getValue()).intValue();
+                } catch (Exception uninitializedValue) {
+                    uninitializedValue.printStackTrace();
+                }
+
+                if (result == JOptionPane.OK_OPTION) {
+                    Image img = getToolkit().createImage("wall.png");
+
+                    DraggableImageComponent robot = new DraggableImageComponent();
+                    /** @todo adicionar um menu de botão direito para remoção */
+                    drawingPanel.add(robot);
+
+                    robot.setImage(img);//Sets image
+                    //robot.setAutoSize(true);//The component get ratio w/h of source image
+                    robot.setOverbearing(true);//On click ,this panel gains lowest z-buffer
+                    robot.setSize(Integer.decode(obsLargura.getText()),
+                            Integer.decode(obsAltura.getText()));
+                    robot.setLocation(popupMenu.getLocation());
+                    drawingPanel.repaint();
+
+                    adicionarMeta.setEnabled(false);
+
+                    //return true;
+                } else {
+                    //return false;
+                }
+
+            }
+        });
+
         adicionarSub.add(adicionarRobo);
         adicionarSub.add(adicionarMeta);
         adicionarSub.add(adicionarObstaculo);
@@ -174,16 +221,16 @@ public class GUI extends JFrame {
 
         // Sets a border to each element
 
-        drawingPanel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.darkGray));
+        drawingPanel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 0, Color.darkGray));
 
 
         this.setLayout(layout);
 
-        layElement(layoutConstraints, GridBagConstraints.BOTH, 6, 1, 0, 0);
+        layElement(layoutConstraints, GridBagConstraints.BOTH, 10, 1, 0, 0);
         this.getContentPane().add(drawingPanel, layoutConstraints);
 
         sidebar = new Sidebar();
-        sidebar.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.darkGray));
+        sidebar.setBorder(BorderFactory.createMatteBorder(5, 0, 5, 5, Color.darkGray));
 
         layElement(layoutConstraints, GridBagConstraints.NORTHWEST, 1, 1, 1, 0);
         this.getContentPane().add(sidebar, layoutConstraints);
